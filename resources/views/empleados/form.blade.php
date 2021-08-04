@@ -9,16 +9,19 @@
 <div class="form-group">
 <label class="control-label" for="ApellidoPaterno">{{'Apellido Paterno'}}</label>
 <input class="form-control {{$errors->has('Nombre')?'is-invalid':''}}" type="text" name="ApellidoPaterno" id="ApellidoPaterno" value="{{isset( $empleado->ApellidoPaterno)?$empleado->ApellidoPaterno:''}}">
+{!! $errors->first('ApellidoPaterno','<div class="invalid-feedback">:message</div>' ) !!}
 </div>
 
 <div class="form-group">
 <label class="control-label" for="ApellidoMaterno">{{'Apellido Materno'}}</label>
 <input class="form-control" type="text" name="ApellidoMAterno" id="ApellidoMaterno" value="{{isset( $empleado->ApellidoMaterno)?$empleado->ApellidoMaterno:''}}">
+{!! $errors->first('ApellidoMaterno','<div class="invalid-feedback">:message</div>' ) !!}
 </div>
 
 <div class="form-group">
 <label class="control-label" for="Correo">{{'Correo'}}</label>
 <input class="form-control" type="email" name="Correo" id="Correo" value="{{isset( $empleado->Correo)?$empleado->Correo:''}}">
+{!! $errors->first('Correo','<div class="invalid-feedback">:message</div>' ) !!}
 </div>
 
 <div class="form-group">
