@@ -18,7 +18,9 @@ Route::get('/', function () {
 });
 //Route::get('/empleados','\App\Http\Controllers\EmpleadosController@index' );
 //Route::get('/empleados/create','\App\Http\Controllers\EmpleadosController@create' );
-Route::resource('empleados', '\App\Http\Controllers\EmpleadosController');
+Route::resource('/empleados', '\App\Http\Controllers\EmpleadosController')->middleware('auth');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/home', '\App\Http\Controllers\EmpleadosController::class')->name('home');
