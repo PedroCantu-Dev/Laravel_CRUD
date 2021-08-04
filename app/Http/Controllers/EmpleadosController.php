@@ -40,8 +40,6 @@ class EmpleadosController extends Controller
     public function store(Request $request)
     {
         //
-
-
         $campos=[
             'Nombre' => 'required|string|max:100',
             'ApellidoPaterno' => 'required|string|max:100',
@@ -49,7 +47,7 @@ class EmpleadosController extends Controller
             'Correo' => 'required|email',
             'Foto' => 'required|max:1000|mimes:jpeg,png,jpg'
         ];
-        $Mensaje=["required" => 'El:attribute es requerido'];
+        $Mensaje=["required" => 'El :attribute es requerido'];
         $this->validate($request,$campos,$Mensaje);
 
         //$datosEmpleado=request()->all();
@@ -100,11 +98,25 @@ class EmpleadosController extends Controller
     public function update(Request $request, $id )
     {
         //
+
+        $campos=[
+            'Nombre' => 'required|string|max:100',
+            'ApellidoPaterno' => 'required|string|max:100',
+            'ApellidoMaterno' => 'required|string|max:100',
+            'Correo' => 'required|email',
+            'Foto' => 'required|max:1000|mimes:jpeg,png,jpg'
+        ];
+
+        if($request->hasFile('Foto')){
+            $campos+=['Foto' => 'required|max:10000|mimes:jpeg,png,jpg'];
+        }
+
+        $Mensaje=["required" => 'El :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
         $datosEmpleado=request()->except(['_token', '_method']);
 
-
         if($request->hasFile( 'Foto')){
-            $empleado = Empleados::FindOrFail($id);
+            $empleado = Empleados::findOrFail($id);
 
             Storage::delete('public/'.$empleado->Foto);
 
